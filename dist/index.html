@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fusabase + ORDS Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/assets/index-DxU44zOi.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-B6PBLxu7.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Fusabase Medical System</h1>
+      <div id="message" class="hidden"></div>
+
+      <!-- Auth Section -->
+      <div id="auth-section" class="glass-panel">
+        <h2>Authentication</h2>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="doctor@medical.com" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" />
+        </div>
+        <div class="row">
+          <button id="btn-login">Login</button>
+          <button id="btn-register">Register</button>
+        </div>
+      </div>
+
+      <!-- App Section (Hidden until logged in) -->
+      <div id="app-section" class="hidden">
+        <div class="glass-panel">
+          <h2>Welcome, <span id="user-email"></span>!</h2>
+          <button id="btn-logout" style="margin-top: 1rem; background-color: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.5); color: #f87171;">Logout</button>
+        </div>
+
+        <div class="glass-panel">
+          <h2>Database (ORDS)</h2>
+          <div class="form-group">
+            <label for="note-text">Add Medical Note</label>
+            <input type="text" id="note-text" placeholder="Patient observation..." />
+          </div>
+          <button id="btn-add-note">Insert Note</button>
+          
+          <h3 style="margin-top: 2rem;">Recent Notes</h3>
+          <ul id="notes-list">
+            <!-- Notes will be loaded here -->
+          </ul>
+        </div>
+
+        <div class="glass-panel">
+          <h2>Storage (Object Store)</h2>
+          <div class="form-group">
+            <label for="file-upload">Upload Document</label>
+            <input type="file" id="file-upload" />
+          </div>
+          <button id="btn-upload">Upload File</button>
+          <a id="file-url" class="hidden" target="_blank">View Uploaded File</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
