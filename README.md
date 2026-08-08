@@ -2,6 +2,36 @@
 
 This is a complete, minimal, production-quality example project demonstrating how to use the **Oracle Backend for Firebase (Fusabase SDK)** in a modern web application. It connects to an Oracle Database via ORDS and provides standard Authentication, Database CRUD operations, and Object Storage.
 
+## Visual Guide & Architecture
+
+This project maps standard Firebase-like SDK calls directly to an Oracle Backend. Below is a visual walkthrough of the application and how the data is reflected in the Fusabase console.
+
+### 1. Project Initialization
+Before writing code, the project is configured inside the Oracle Backend for Firebase console.
+![Project Setup](screenshots/Screenshot_20260729_015913.png)
+*The BaaS console where the Oracle Fusabase project is created and managed.*
+
+### 2. User Authentication
+The application provides a secure login and registration system using `fusabase/auth`.
+- **Frontend (Web App):** Users authenticate via the UI.
+  ![Login Screen](screenshots/Screenshot_login.png)
+- **Backend (Fusabase Console):** User records are securely managed and tracked.
+  ![Authentication Console](screenshots/Screenshot_20260808_045939.png)
+
+### 3. Database CRUD Operations (ORDS)
+Users can add and retrieve records using `fusabase/oracledb`.
+- **Frontend (Web App):** A user submits a medical note, triggering a success banner.
+  ![Dashboard](screenshots/Screenshot_20260808_045716.png)
+- **Backend (Fusabase Console):** The data is immediately persisted in the Oracle database collection.
+  ![Database Console](screenshots/Screenshot_20260808_045727.png)
+
+### 4. Object Storage (DBFS)
+Files uploaded through the UI are sent directly to the Oracle Database File System using `fusabase/storage`.
+- **Frontend (Web App):** The user selects a file and uploads it.
+  ![Storage Upload](screenshots/Screenshot_20260808_045845.png)
+- **Backend (Fusabase Console):** The file is safely stored and retrievable via the backend console.
+  ![Storage Console](screenshots/Screenshot_20260808_045854.png)
+
 ## Features
 
 - **User Authentication:** Register, login, and logout functionalities using `fusabase/auth`.
@@ -22,8 +52,9 @@ This is a complete, minimal, production-quality example project demonstrating ho
 .
 ├── auth.js          # Authentication logic (login/register)
 ├── db.js            # Database operations (insert/fetch via ORDS)
+├── config.js        # Fusabase initialization and configuration
 ├── index.html       # Main HTML layout and UI
-├── main.js          # Entry point, UI interaction, and Fusabase SDK initialization
+├── main.js          # Entry point, UI interaction and orchestration
 ├── package.json     # Project dependencies
 ├── storage.js       # File upload/retrieval logic
 ├── style.css        # Premium glassmorphism UI styles
@@ -41,11 +72,11 @@ This is a complete, minimal, production-quality example project demonstrating ho
    *(If you are installing manually in a new project, you can use: `npm install fusabase`)*
 
 3. **Configure the SDK**:
-   The configuration is already embedded inside `main.js` using the provided keys:
+   The configuration is embedded inside `config.js` and securely loads from environment variables:
    ```javascript
    const fusabaseConfig = {
-     "schema": "your_schema",
-     "app_name": "your_app_name",
+     "schema": import.meta.env.VITE_FUSABASE_SCHEMA || "your_schema",
+     "app_name": import.meta.env.VITE_FUSABASE_APP_NAME || "your_app_name",
      "app_type": "WEB",
      // ...
    };
@@ -59,40 +90,6 @@ npm run dev
 ```
 
 Visit the local URL provided in your terminal (usually `http://localhost:3000` or `http://localhost:5173`) to view and interact with the application.
-
-## Screenshots & Analysis
-
-### Application UI
-
-- **Login / Register Screen**
-  ![Login Screen](screenshots/Screenshot_login.png)
-  *The authentication entry point, ensuring users must verify their identity before accessing the application.*
-
-- **Dashboard & CRUD Operations**
-  ![Dashboard](screenshots/Screenshot_20260808_045716.png)
-  *The main application interface displaying a green success banner after writing a new document to the Oracle database collection using `fusabase/oracledb`.*
-
-- **Storage Upload**
-  ![Storage Upload](screenshots/Screenshot_20260808_045845.png)
-  *The lower section of the dashboard highlighting the DBFS object storage feature, allowing secure file uploads.*
-
-### Oracle Backend Console (Fusabase)
-
-- **Project Creation & Management**
-  ![Project Setup](screenshots/Screenshot_20260729_015913.png)
-  *The BaaS console where the initial Oracle Backend for Firebase project is configured.*
-
-- **Database Collection**
-  ![Database Console](screenshots/Screenshot_20260808_045727.png)
-  *View of the database collection inside the Fusabase console, verifying the data was successfully persisted by the application.*
-
-- **Storage Console (DBFS)**
-  ![Storage Console](screenshots/Screenshot_20260808_045854.png)
-  *View of the Storage console confirming that the file has been successfully uploaded and stored in the Oracle Database File System (DBFS).*
-
-- **Authentication Records**
-  ![Authentication Console](screenshots/Screenshot_20260808_045939.png)
-  *The Authentication console displaying the list of registered users and their sign-in providers, demonstrating successful integration with `fusabase/auth`.*
 
 ## Contribution & Maintenance
 
