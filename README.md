@@ -44,8 +44,8 @@ This is a complete, minimal, production-quality example project demonstrating ho
    The configuration is already embedded inside `main.js` using the provided keys:
    ```javascript
    const fusabaseConfig = {
-     "schema": "medical_baas",
-     "app_name": "myapp",
+     "schema": "your_schema",
+     "app_name": "your_app_name",
      "app_type": "WEB",
      // ...
    };
@@ -60,18 +60,39 @@ npm run dev
 
 Visit the local URL provided in your terminal (usually `http://localhost:3000` or `http://localhost:5173`) to view and interact with the application.
 
-## Screenshots
+## Screenshots & Analysis
 
-*(Replace these placeholders with actual screenshots of your running application before submitting to GitHub/Oracle ACE).*
+### Application UI
 
 - **Login / Register Screen**
-  ![Login Screen](screenshot/Screenshot_login.png)
+  ![Login Screen](screenshots/Screenshot_login.png)
+  *The authentication entry point, ensuring users must verify their identity before accessing the application.*
 
 - **Dashboard & CRUD Operations**
-  ![Dashboard](screenshot/Screenshot_20260808_045716.png)
+  ![Dashboard](screenshots/Screenshot_20260808_045716.png)
+  *The main application interface displaying a green success banner after writing a new document to the Oracle database collection using `fusabase/oracledb`.*
 
 - **Storage Upload**
-  ![Storage Upload](screenshot/Screenshot_20260808_045845.png)
+  ![Storage Upload](screenshots/Screenshot_20260808_045845.png)
+  *The lower section of the dashboard highlighting the DBFS object storage feature, allowing secure file uploads.*
+
+### Oracle Backend Console (Fusabase)
+
+- **Project Creation & Management**
+  ![Project Setup](screenshots/Screenshot_20260729_015913.png)
+  *The BaaS console where the initial Oracle Backend for Firebase project is configured.*
+
+- **Database Collection**
+  ![Database Console](screenshots/Screenshot_20260808_045727.png)
+  *View of the database collection inside the Fusabase console, verifying the data was successfully persisted by the application.*
+
+- **Storage Console (DBFS)**
+  ![Storage Console](screenshots/Screenshot_20260808_045854.png)
+  *View of the Storage console confirming that the file has been successfully uploaded and stored in the Oracle Database File System (DBFS).*
+
+- **Authentication Records**
+  ![Authentication Console](screenshots/Screenshot_20260808_045939.png)
+  *The Authentication console displaying the list of registered users and their sign-in providers, demonstrating successful integration with `fusabase/auth`.*
 
 ## Contribution & Maintenance
 
